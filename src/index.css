@@ -169,7 +169,8 @@ a { color: var(--gold-2); }
 .concert-node:disabled { cursor: not-allowed; opacity: 0.55; }
 .concert-node .venue { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); }
 .concert-node .meta { font-size: 0.85rem; color: var(--ink-2); }
-.concert-node .status { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 0.85rem; }
+.concert-node .status { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 6px 8px; flex-wrap: wrap; font-size: 0.85rem; }
+.concert-node .badge { white-space: nowrap; }
 .concert-node.is-done { border-color: color-mix(in srgb, var(--gold) 70%, transparent); }
 .concert-node.is-next { border-color: var(--gold); box-shadow: 0 0 0 2px color-mix(in srgb, var(--gold) 40%, transparent), 0 0 30px color-mix(in srgb, var(--gold) 25%, transparent); }
 .venue-art { width: 100%; height: 54px; }
@@ -366,6 +367,21 @@ textarea.save-box { width: 100%; min-height: 120px; font-family: ui-monospace, M
   .key-row { gap: 4px; }
   .btn { padding-left: 16px; padding-right: 16px; }
   .topbar h1 { font-size: 1.1rem; }
+}
+@media (min-width: 700px) {
+  :root { --tile-size: clamp(56px, 7vw, 76px); --key-h: 60px; }
+  :root[data-text='large'] { --tile-size: clamp(60px, 8vw, 84px); --key-h: 66px; }
+  .key { max-width: 58px; }
+  .key-wide { max-width: 96px; }
+}
+/* Landscape tablets and short laptops: keep board and keyboard on one screen. */
+@media (min-width: 700px) and (max-height: 900px) {
+  :root { --tile-size: clamp(44px, 6.5vh, 64px); --key-h: 52px; }
+  :root[data-text='large'] { --tile-size: clamp(48px, 7vh, 68px); --key-h: 58px; }
+  .board, .board-row { gap: 5px; }
+  .keyboard { gap: 5px; }
+  .topbar { min-height: 56px; padding: 8px 0 6px; }
+  .content { gap: 10px; }
 }
 @media (min-width: 900px) {
   .title-hero h1 { font-size: 5.2rem; }
