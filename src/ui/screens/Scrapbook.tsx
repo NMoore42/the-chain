@@ -36,19 +36,34 @@ export function ScrapbookScreen({ tab = 'stories' }: { tab?: string }) {
         </div>
 
         {tab === 'stories' && (
-          <div className="list-cards" role="tabpanel">
+          <div className="stack" role="tabpanel">
             <p className="muted small">{unlockedStories.length} of {storyOrder.length} pages found. Play concerts to turn more pages.</p>
-            {storyOrder.map((id) => {
-              const s = STORIES[id]
-              const open = unlockedStories.includes(id)
+            {ERAS.map((era) => {
+              const ids = [era.introStoryId, ...era.concerts.map((c) => c.storyId)]
+              const found = ids.filter((id) => unlockedStories.includes(id)).length
               return (
-                <button key={id} className={`list-card${open ? '' : ' is-locked'}`} disabled={!open} onClick={() => { sfx.tap(); navigate({ name: 'story', storyId: id }) }}>
-                  <MemorabiliaIcon icon={s.tag === 'stevie' ? 'moon' : s.tag === 'album' ? 'record' : s.tag === 'band' ? 'penguin' : 'ticket'} locked={!open} />
-                  <span>
-                    <div className="t">{open ? s.title : 'A page not yet turned'}</div>
-                    <div className="s">{open ? `${s.year}` : 'Complete the next concert to unlock'}</div>
-                  </span>
-                </button>
+                <section key={era.id} className={`stack${found === 0 ? ' era-locked' : ''}`} aria-label={`Era ${era.number}: ${era.title}`}>
+                  <div className="era-head" style={{ marginTop: 6 }}>
+                    <span className="eyebrow">Era {era.number}</span>
+                    <h2 style={{ fontSize: '1.2rem' }}>{era.title}</h2>
+                    <span className="small muted">{found} of {ids.length}</span>
+                  </div>
+                  <div className="list-cards">
+                    {ids.map((id) => {
+                      const st = STORIES[id]
+                      const open = unlockedStories.includes(id)
+                      return (
+                        <button key={id} className={`list-card${open ? '' : ' is-locked'}`} disabled={!open} onClick={() => { sfx.tap(); navigate({ name: 'story', storyId: id }) }}>
+                          <MemorabiliaIcon icon={st.tag === 'stevie' ? 'moon' : st.tag === 'album' ? 'record' : st.tag === 'band' ? 'penguin' : 'ticket'} locked={!open} />
+                          <span>
+                            <div className="t">{open ? st.title : 'A page not yet turned'}</div>
+                            <div className="s">{open ? st.year : 'Complete the next concert to unlock'}</div>
+                          </span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </section>
               )
             })}
           </div>

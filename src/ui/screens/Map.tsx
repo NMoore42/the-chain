@@ -57,7 +57,7 @@ export function MapScreen() {
                       onClick={() => open(c.id, era.introStoryId)}
                       aria-label={`${c.title}, ${c.location}, ${c.date}${done ? ', completed' : ok ? '' : ', locked'}`}
                     >
-                      <VenueArt scale={c.scale} />
+                      <VenueArt scale={c.scale} kind={c.venueKind === 'studio' ? 'studio' : 'venue'} />
                       <span className="venue">{c.title}</span>
                       <span className="meta">{c.location} · {c.date}</span>
                       <span className="status">

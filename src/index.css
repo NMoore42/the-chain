@@ -370,6 +370,10 @@ textarea.save-box { width: 100%; min-height: 120px; font-family: ui-monospace, M
 }
 @media (min-width: 700px) {
   :root { --tile-size: clamp(56px, 7vw, 76px); --key-h: 60px; }
+  .title-logo { width: min(320px, 40vw); }
+  .title-menu { width: min(420px, 100%); }
+  .venue-art { height: 64px; }
+  .laminate .venue-art { height: 90px; }
   :root[data-text='large'] { --tile-size: clamp(60px, 8vw, 84px); --key-h: 66px; }
   .key { max-width: 58px; }
   .key-wide { max-width: 96px; }

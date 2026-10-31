@@ -26,7 +26,7 @@ export function ConcertScreen({ concertId }: { concertId: string }) {
   if (!concert || !era) return <main className="screen"><TopBar back={{ name: 'map' }} /><p>Concert not found.</p></main>
   if (!isConcertUnlocked(concertId)) {
     return (
-      <main className="screen"><TopBar back={{ name: 'map' }} /><div className="card center stack"><p>This concert is still locked. Finish the one before it first.</p><button className="btn btn-primary" onClick={() => navigate({ name: 'map' })}>Back to the tour</button></div></main>
+      <main className="screen"><TopBar title="Locked" back={{ name: 'map' }} /><div className="card center stack"><p>This concert is still locked. Finish the one before it first.</p><button className="btn btn-primary" onClick={() => navigate({ name: 'map' })}>Back to the tour</button></div></main>
     )
   }
   const progress = save.concerts[concertId]
@@ -42,7 +42,7 @@ export function ConcertScreen({ concertId }: { concertId: string }) {
           <p className="eyebrow">Backstage pass · {concert.date}</p>
           <h1 style={{ fontSize: 'clamp(1.6rem, 5vw, 2.2rem)' }}>{concert.title}</h1>
           <p className="muted">{concert.location} · {concert.capacityLabel}</p>
-          <VenueArt scale={concert.scale} />
+          <VenueArt scale={concert.scale} kind={concert.venueKind === 'studio' ? 'studio' : 'venue'} />
           <p>{concert.blurb}</p>
           <p className="small muted"><span className="badge badge-soft">{kindLabel}</span></p>
         </div>
