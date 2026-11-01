@@ -22,4 +22,7 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'jam-win', name: 'Headliner', description: 'Beat your bandmate on the board.', icon: 'trophy' },
   { id: 'jam-mac', name: 'Gold Dust', description: 'Play a Fleetwood Mac word on the board.', icon: 'balls' },
   { id: 'jam-fifty', name: 'Showstopper Move', description: 'Score 50 or more with a single board play.', icon: 'star' },
+  { id: 'trivia-first', name: 'Backstage Pass', description: 'Finish a round of Backstage Trivia.', icon: 'laminate' },
+  { id: 'trivia-perfect', name: 'Historian', description: 'Answer every question in a trivia round correctly.', icon: 'plaque' },
+  { id: 'trivia-fifty', name: 'Keeper of the Lore', description: 'Answer fifty trivia questions correctly.', icon: 'sketch' },
 ]

@@ -13,6 +13,7 @@ import { CHAINS } from '../src/data/puzzles/chains'
 import { COLLECTIBLES } from '../src/data/collectibles'
 import { STORIES, MEMBERS, ALBUMS } from '../src/data/history'
 import { DAILY_WORDS } from '../src/data/dailyWords'
+import { TRIVIA, TRIVIA_CATEGORIES } from '../src/data/trivia'
 
 const dict = loadTestDictionary()
 const allWords = [3, 4, 5, 6, 7].flatMap((n) => [...dict.wordsOfLength(n)])
@@ -127,5 +128,28 @@ describe('Daily Encore', () => {
       expect(dict.has(w), w).toBe(true)
     }
     expect(DAILY_WORDS.length).toBeGreaterThanOrEqual(200)
+  })
+})
+
+describe('Backstage Trivia', () => {
+  it('has well-formed, sourced questions', () => {
+    const ids = TRIVIA.map((q) => q.id)
+    expect(new Set(ids).size).toBe(ids.length)
+    expect(TRIVIA.length).toBeGreaterThanOrEqual(60)
+    for (const q of TRIVIA) {
+      expect(q.options, q.id).toHaveLength(4)
+      expect(new Set(q.options.map((o) => o.trim().toLowerCase())).size, q.id).toBe(4)
+      expect([0, 1, 2, 3], q.id).toContain(q.answer)
+      expect(q.question.trim().length, q.id).toBeGreaterThan(10)
+      expect(q.note.trim().length, q.id).toBeGreaterThan(10)
+      expect(q.source, q.id).toMatch(/^https?:\/\//)
+    }
+    for (const c of TRIVIA_CATEGORIES) {
+      if (c.id === 'all') continue
+      expect(TRIVIA.filter((q) => q.category === c.id).length, c.id).toBeGreaterThanOrEqual(10)
+    }
+    // Correct answers should be spread across positions (no "always C").
+    const counts = [0, 1, 2, 3].map((i) => TRIVIA.filter((q) => q.answer === i).length)
+    for (const n of counts) expect(n).toBeGreaterThanOrEqual(TRIVIA.length * 0.12)
   })
 })
