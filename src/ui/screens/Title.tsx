@@ -49,6 +49,7 @@ export function TitleScreen() {
           <button className="btn" onClick={() => { sfx.tap(); navigate({ name: 'daily' }) }}><UiIcon name="calendar" size={20} /> Daily Encore</button>
           <button className="btn" onClick={() => { sfx.tap(); navigate({ name: 'jam' }) }}><UiIcon name="music" size={20} /> Jam Session</button>
           <button className="btn" onClick={() => { sfx.tap(); navigate({ name: 'trivia' }) }}><UiIcon name="help" size={20} /> Backstage Trivia</button>
+          <button className="btn" onClick={() => { sfx.tap(); navigate({ name: 'venue' }) }}><UiIcon name="moon" size={20} /> The Penguin Club</button>
           <button className="btn" onClick={() => { sfx.tap(); navigate({ name: 'free' }) }}><UiIcon name="play" size={20} /> Free Play</button>
           <button className="btn" onClick={() => { sfx.tap(); navigate({ name: 'scrapbook' }) }}><UiIcon name="book" size={20} /> Scrapbook</button>
           <button className="btn btn-ghost" onClick={() => { sfx.tap(); navigate({ name: 'settings' }) }}><UiIcon name="settings" size={20} /> Settings</button>

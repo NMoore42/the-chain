@@ -8,6 +8,7 @@ Built as a gift. No accounts, no servers, no tracking. Open the link and play.
 
 - **The Tour**: 8 eras, 25 concerts, 73 puzzles. Each concert is a short set of puzzles; finishing one unlocks the next venue, a story page, and a piece of memorabilia.
 - **Jam Session**: a Words With Friends-style board game against a computer bandmate at three difficulty levels. Any word tied to Fleetwood Mac (song and album words, the band's names, the places where the music was made) scores double and shows a short fact. Names count even when they are not dictionary words.
+- **The Penguin Club**: a lo-fi pixel-art club where the band is playing. Walk around (tap to move, or arrow keys and an on-screen pad), talk to the five band members and the crew, and find your way backstage. The club is fictional and the chatter is written for the game; the facts the characters mention are sourced.
 - **Backstage Trivia**: rounds of ten multiple-choice questions with no clock, drawn only from the verified research notes, each answer followed by the story and its source.
 - **Daily Encore**: one five-letter word a day, the same for everyone, no streaks.
 - **Free Play**: any mode, any time, without affecting the tour.

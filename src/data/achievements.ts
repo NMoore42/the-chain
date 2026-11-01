@@ -25,4 +25,6 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'trivia-first', name: 'Backstage Pass', description: 'Finish a round of Backstage Trivia.', icon: 'laminate' },
   { id: 'trivia-perfect', name: 'Historian', description: 'Answer every question in a trivia round correctly.', icon: 'plaque' },
   { id: 'trivia-fifty', name: 'Keeper of the Lore', description: 'Answer fifty trivia questions correctly.', icon: 'sketch' },
+  { id: 'club-band', name: 'Meet the Band', description: 'Talk to all five members at The Penguin Club.', icon: 'penguin' },
+  { id: 'club-backstage', name: 'All Access', description: 'Find your way backstage at The Penguin Club.', icon: 'laminate' },
 ]

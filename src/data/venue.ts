@@ -253,4 +253,4 @@ export const PROPS: Record<string, VenueProp> = {
 }
 
 export const VENUE_DISCLAIMER =
-  'The Penguin Club and the chatter inside it are written for this game; the facts the characters mention are real and sourced in docs/research/history-notes.md.'
+  'The Penguin Club and the chatter inside it are written for this game. The facts the characters mention are real, and every conversation links to its source.'

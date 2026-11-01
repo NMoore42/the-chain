@@ -473,3 +473,22 @@ textarea.save-box { width: 100%; min-height: 120px; font-family: ui-monospace, M
 .trivia-option.is-dim { opacity: 0.45; }
 .trivia-note { gap: 10px; }
 .trivia-note .sources { font-size: 0.78rem; }
+
+/* ---------- The Penguin Club (pixel scene) ---------- */
+.venue-stage { position: relative; width: 100%; max-width: 960px; margin: 0 auto; }
+.venue-canvas { display: block; width: 100%; height: auto; image-rendering: pixelated; image-rendering: crisp-edges; border-radius: 10px; border: 2px solid color-mix(in srgb, var(--gold) 45%, transparent); box-shadow: var(--shadow); background: #000; cursor: pointer; touch-action: manipulation; }
+.venue-dialogue { position: absolute; left: 12px; right: 12px; bottom: 12px; padding: 12px 16px; border-radius: 12px; background: rgba(243, 233, 210, 0.97); color: #2a1d3b; border: 2px solid var(--gold); box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; font-size: 1rem; }
+.venue-dialogue-head { font-family: var(--font-display); font-size: 1.05rem; }
+.venue-dialogue a { color: #7a3a2a; }
+.venue-dialogue .muted { color: #5a4a3a; }
+.venue-controls { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; max-width: 960px; margin: 12px auto 0; }
+.dpad { display: grid; grid-template-columns: repeat(3, 52px); grid-template-rows: repeat(3, 52px); gap: 4px; }
+.dpad .up { grid-column: 2; grid-row: 1; } .dpad .left { grid-column: 1; grid-row: 2; } .dpad .right { grid-column: 3; grid-row: 2; } .dpad .down { grid-column: 2; grid-row: 3; }
+.dpad .btn { width: 52px; height: 52px; user-select: none; -webkit-user-select: none; touch-action: none; }
+@media (min-width: 960px) and (max-height: 900px) {
+  .venue-stage { max-width: calc((100vh - 200px) * 24 / 14); }
+}
+@media (max-width: 600px) {
+  .venue-controls { grid-template-columns: 1fr; justify-items: center; }
+  .venue-dialogue { position: relative; left: auto; right: auto; bottom: auto; margin-top: 8px; font-size: 0.95rem; padding: 10px 12px; }
+}
