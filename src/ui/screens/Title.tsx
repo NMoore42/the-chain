@@ -4,8 +4,8 @@ import { navigate } from '../../state/router'
 import { useGame } from '../../state/store'
 import { useEraTheme } from '../hooks'
 import { UiIcon } from '../components/Icons'
-import { playEasterEgg, sfx } from '../../audio/audio'
-import { useState } from 'react'
+import { playEasterEgg, sfx, stopEasterEgg } from '../../audio/audio'
+import { useEffect, useState } from 'react'
 import { StevieEgg } from '../components/StevieEgg'
 import { Modal } from '../components/Modal'
 
@@ -36,6 +36,8 @@ export function TitleScreen() {
   const done = Object.values(save.concerts).filter((c) => c.completed).length
   const started = done > 0 || Object.keys(save.inProgress).length > 0
   const [egg, setEgg] = useState<null | { singing: boolean; silent: boolean }>(null)
+  const closeEgg = () => { stopEasterEgg(); setEgg(null) }
+  useEffect(() => () => stopEasterEgg(), [])
   const openEgg = () => {
     const audible = save.settings.sound || save.settings.music
     const dur = audible ? playEasterEgg() : 0
@@ -72,11 +74,11 @@ export function TitleScreen() {
         </p>
       </div>
       {egg && (
-        <Modal title="A secret encore" onClose={() => setEgg(null)} className="egg-modal">
+        <Modal title="A secret encore" onClose={closeEgg} className="egg-modal">
           <p className="eyebrow">A secret encore</p>
           <StevieEgg singing={egg.singing} />
           <p className="small muted">{egg.silent ? 'Turn on sound or music in Settings to hear her play.' : 'An original tune, written for the game.'}</p>
-          <button className="btn btn-primary btn-sm" onClick={() => setEgg(null)}>Thank you, goodnight</button>
+          <button className="btn btn-primary btn-sm" onClick={closeEgg}>Thank you, goodnight</button>
         </Modal>
       )}
     </main>

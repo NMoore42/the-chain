@@ -320,6 +320,9 @@ export function currentMusicEra(): EraId | null {
 // A gentle plucked-string figure written for the game (not a transcription of
 // any Fleetwood Mac song). Returns the duration in seconds.
 
+let eggGain: GainNode | null = null
+let eggNodes: AudioScheduledSourceNode[] = []
+
 function pluck(freq: number, t: number, dur: number, vel: number) {
   const c = ctx!
   const g = c.createGain()
@@ -341,14 +344,32 @@ function pluck(freq: number, t: number, dur: number, vel: number) {
     og.connect(f)
     o.start(t)
     o.stop(t + dur + 0.05)
+    eggNodes.push(o)
   }
   f.connect(g)
-  g.connect(master!)
+  g.connect(eggGain ?? master!)
+}
+
+/** Silence the encore immediately (e.g. when its window closes). */
+export function stopEasterEgg(): void {
+  if (ctx && eggGain) {
+    const t = ctx.currentTime
+    eggGain.gain.cancelScheduledValues(t)
+    eggGain.gain.setValueAtTime(eggGain.gain.value, t)
+    eggGain.gain.linearRampToValueAtTime(0, t + 0.15)
+  }
+  const nodes = eggNodes
+  eggNodes = []
+  window.setTimeout(() => { for (const n of nodes) { try { n.stop() } catch { /* already stopped */ } } }, 200)
 }
 
 export function playEasterEgg(): number {
   const c = ensure()
   if (!c || !master) return 0
+  stopEasterEgg()
+  eggGain = c.createGain()
+  eggGain.gain.value = 1
+  eggGain.connect(master)
   const m = (n: number) => 440 * Math.pow(2, (n - 69) / 12)
   // Chords as MIDI notes (low to high), picked in a rolling pattern.
   const E = [40, 47, 52, 55, 59, 64] // E minor add9 voicing
