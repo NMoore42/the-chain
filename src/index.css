@@ -492,3 +492,9 @@ textarea.save-box { width: 100%; min-height: 120px; font-family: ui-monospace, M
   .venue-controls { grid-template-columns: 1fr; justify-items: center; }
   .venue-dialogue { position: relative; left: auto; right: auto; bottom: auto; margin-top: 8px; font-size: 0.95rem; padding: 10px 12px; }
 }
+
+/* ---------- Secret encore ---------- */
+.logo-button { background: none; border: none; padding: 0; cursor: pointer; border-radius: 50%; transition: transform var(--transition); }
+.logo-button:hover { transform: scale(1.04); }
+.egg-canvas { width: 100%; max-width: 480px; height: auto; image-rendering: pixelated; image-rendering: crisp-edges; border-radius: 12px; border: 2px solid var(--gold); box-shadow: 0 0 40px color-mix(in srgb, var(--gold) 35%, transparent); background: #120a1c; margin: 0 auto; display: block; }
+.egg-modal { width: min(560px, 100%); }

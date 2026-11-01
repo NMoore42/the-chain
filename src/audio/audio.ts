@@ -315,3 +315,59 @@ export function stopMusic(immediate = false): void {
 export function currentMusicEra(): EraId | null {
   return musicEra
 }
+
+// ---------- Easter egg: an original fingerpicked acoustic intro ----------
+// A gentle plucked-string figure written for the game (not a transcription of
+// any Fleetwood Mac song). Returns the duration in seconds.
+
+function pluck(freq: number, t: number, dur: number, vel: number) {
+  const c = ctx!
+  const g = c.createGain()
+  const f = c.createBiquadFilter()
+  f.type = 'lowpass'
+  f.frequency.setValueAtTime(3200, t)
+  f.frequency.exponentialRampToValueAtTime(700, t + dur)
+  g.gain.setValueAtTime(0, t)
+  g.gain.linearRampToValueAtTime(vel, t + 0.006)
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur)
+  for (const [type, mult, amt] of [['triangle', 1, 0.9], ['sine', 2, 0.25], ['sine', 3, 0.08]] as const) {
+    const o = c.createOscillator()
+    o.type = type
+    o.frequency.value = freq * mult
+    o.detune.value = (Math.random() - 0.5) * 5
+    const og = c.createGain()
+    og.gain.value = amt
+    o.connect(og)
+    og.connect(f)
+    o.start(t)
+    o.stop(t + dur + 0.05)
+  }
+  f.connect(g)
+  g.connect(master!)
+}
+
+export function playEasterEgg(): number {
+  const c = ensure()
+  if (!c || !master) return 0
+  const m = (n: number) => 440 * Math.pow(2, (n - 69) / 12)
+  // Chords as MIDI notes (low to high), picked in a rolling pattern.
+  const E = [40, 47, 52, 55, 59, 64] // E minor add9 voicing
+  const C = [36, 43, 52, 55, 59, 64] // C major 7
+  const G = [43, 47, 50, 55, 59, 62]
+  const D = [38, 45, 50, 54, 57, 62] // D sus-ish
+  const bars = [E, C, G, D, E, C, G, E]
+  const beat = 60 / 84
+  const eighth = beat / 2
+  let t = c.currentTime + 0.05
+  const pattern = [0, 3, 4, 5, 4, 3, 0, 4] // string indexes per eighth note
+  for (const chord of bars) {
+    for (let i = 0; i < 8; i++) {
+      const note = chord[pattern[i]]
+      pluck(m(note), t, 1.4, i === 0 ? 0.22 : 0.15)
+      t += eighth
+    }
+  }
+  // Let the last chord ring.
+  for (let i = 0; i < 6; i++) pluck(m(E[i]), t + i * 0.06, 2.8, 0.16)
+  return t - c.currentTime + 3
+}

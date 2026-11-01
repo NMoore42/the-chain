@@ -104,7 +104,7 @@ export function drawGrid(ctx: CanvasRenderingContext2D, g: Grid, x: number, y: n
     for (let i = 0; i < g[j].length; i++) {
       const c = g[j][i]
       if (c === '.') continue
-      ctx.fillStyle = PAL[c as PalKey] ?? c
+      ctx.fillStyle = (PAL as Record<string, string>)[c] ?? c
       ctx.fillRect(x + i, y + j, 1, 1)
     }
   }
