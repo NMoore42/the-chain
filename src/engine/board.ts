@@ -269,10 +269,28 @@ function canForm(word: string, pattern: (string | null)[], rack: Map<string, num
 export function generateMoves(board: Board, rack: BoardTile[], dict: Dictionary, wordsByLength: (n: number) => readonly string[], limitPerSlot = 60): Candidate[] {
   const rackCounts = new Map<string, number>()
   for (const t of rack) rackCounts.set(t.letter, (rackCounts.get(t.letter) ?? 0) + 1)
+  // Prefilter: a word can only be played if every letter comes from the rack,
+  // a tile already on the board, or a blank. Computed once per turn.
+  const allowed = new Set<string>(rack.map((t) => t.letter))
+  for (const row of board) for (const t of row) if (t) allowed.add(letterOf(t))
+  const blanks = rackCounts.get('?') ?? 0
+  const filtered = new Map<number, string[]>()
+  const wordsFor = (n: number) => {
+    let list = filtered.get(n)
+    if (!list) {
+      list = wordsByLength(n).filter((w) => {
+        let outside = 0
+        for (const ch of w) if (!allowed.has(ch) && ++outside > blanks) return false
+        return true
+      })
+      filtered.set(n, list)
+    }
+    return list
+  }
   const out: Candidate[] = []
   const seen = new Set<string>()
   for (const slot of slots(board)) {
-    const words = wordsByLength(slot.length)
+    const words = wordsFor(slot.length)
     let tried = 0
     for (const w of words) {
       const used = canForm(w, slot.pattern, rackCounts)
