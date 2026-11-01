@@ -22,7 +22,7 @@ export function AboutScreen() {
           <h2 style={{ fontSize: '1.2rem' }}>Where the history comes from</h2>
           <p className="small">Every scrapbook page lists its sources. The role of the player as a member of the road crew is a game device, not a historical claim. Venues marked as game stages are not documented performances.</p>
           <h2 style={{ fontSize: '1.2rem' }}>Words</h2>
-          <p className="small">Word validation uses the public-domain ENABLE word list, trimmed to three-to-eight-letter words. Letter values follow the classic Scrabble scheme, which is not protected by copyright. Scrabble, Words With Friends, and Wordle are trademarks of their respective owners; this game is not associated with any of them.</p>
+          <p className="small">Word validation uses the public-domain ENABLE word list, trimmed to two-to-eight-letter words. Letter values follow the classic Scrabble scheme in the Songwriter and a Words With Friends-style scheme in the Jam Session; neither is protected by copyright. Scrabble, Words With Friends, and Wordle are trademarks of their respective owners; this game is not associated with any of them.</p>
           <h2 style={{ fontSize: '1.2rem' }}>Privacy</h2>
           <p className="small">No accounts, no tracking, no servers. Progress lives only in this browser, and you can export it from Settings.</p>
         </div>

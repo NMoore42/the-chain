@@ -18,4 +18,8 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'all-stars', name: 'Standing Ovation', description: 'Earn three stars on every puzzle in a concert.', icon: 'trophy' },
   { id: 'encore-ten', name: 'Encore, Encore', description: 'Play ten Daily Encores.', icon: 'moon' },
   { id: 'scrapbook-full', name: 'Keeper of the Scrapbook', description: 'Unlock every memorabilia item.', icon: 'plaque' },
+  { id: 'jam-first', name: 'Jam Session', description: 'Finish a game on the board.', icon: 'drum' },
+  { id: 'jam-win', name: 'Headliner', description: 'Beat your bandmate on the board.', icon: 'trophy' },
+  { id: 'jam-mac', name: 'Gold Dust', description: 'Play a Fleetwood Mac word on the board.', icon: 'balls' },
+  { id: 'jam-fifty', name: 'Showstopper Move', description: 'Score 50 or more with a single board play.', icon: 'star' },
 ]

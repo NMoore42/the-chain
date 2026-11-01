@@ -41,6 +41,11 @@ export interface Stats {
   setlistSolved: number
   chainsSolved: number
   concertsCompleted: number
+  jamGames: number
+  jamWins: number
+  jamBestScore: number
+  jamBestWord: string
+  jamBestWordScore: number
 }
 
 export interface SaveData {
@@ -81,7 +86,7 @@ export function freshSave(now = new Date()): SaveData {
     achievements: [],
     daily: {},
     settings: { ...DEFAULT_SETTINGS },
-    stats: { bestWord: '', bestWordScore: 0, wordsPlayed: 0, setlistSolved: 0, chainsSolved: 0, concertsCompleted: 0 },
+    stats: { bestWord: '', bestWordScore: 0, wordsPlayed: 0, setlistSolved: 0, chainsSolved: 0, concertsCompleted: 0, jamGames: 0, jamWins: 0, jamBestScore: 0, jamBestWord: '', jamBestWordScore: 0 },
     seenTutorials: [],
     inProgress: {},
   }
@@ -172,6 +177,11 @@ export function sanitizeSave(input: unknown): SaveData | null {
       setlistSolved: num(st.setlistSolved),
       chainsSolved: num(st.chainsSolved),
       concertsCompleted: num(st.concertsCompleted),
+      jamGames: num(st.jamGames),
+      jamWins: num(st.jamWins),
+      jamBestScore: num(st.jamBestScore),
+      jamBestWord: str(st.jamBestWord),
+      jamBestWordScore: num(st.jamBestWordScore),
     },
     seenTutorials: isStrArr(input.seenTutorials) ? [...new Set(input.seenTutorials)] : [],
     inProgress: isObj(input.inProgress) ? { ...input.inProgress } : {},

@@ -7,7 +7,7 @@ let cached: Dictionary | null = null
 
 export function loadTestDictionary(): Dictionary {
   if (!cached) {
-    const text = readFileSync(resolve(process.cwd(), 'public/words/enable-3-8.txt'), 'utf8')
+    const text = readFileSync(resolve(process.cwd(), 'public/words/enable-2-8.txt'), 'utf8')
     const common = readFileSync(resolve(process.cwd(), 'public/words/common.txt'), 'utf8')
     cached = Dictionary.fromText(text, common)
   }

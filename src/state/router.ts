@@ -12,6 +12,7 @@ export type Route =
   | { name: 'daily' }
   | { name: 'free'; mode?: string }
   | { name: 'about' }
+  | { name: 'jam' }
 
 export function parseHash(hash: string): Route {
   const parts = hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent)
@@ -39,6 +40,8 @@ export function parseHash(hash: string): Route {
       return { name: 'free', mode: parts[1] }
     case 'about':
       return { name: 'about' }
+    case 'jam':
+      return { name: 'jam' }
     default:
       return { name: 'title' }
   }
@@ -56,6 +59,7 @@ export function toHash(route: Route): string {
     case 'daily': return '#/daily'
     case 'free': return `#/free${route.mode ? `/${route.mode}` : ''}`
     case 'about': return '#/about'
+    case 'jam': return '#/jam'
   }
 }
 

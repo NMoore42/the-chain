@@ -13,6 +13,7 @@ import { SettingsScreen } from './ui/screens/Settings'
 import { DailyScreen } from './ui/screens/Daily'
 import { FreePlayScreen } from './ui/screens/FreePlay'
 import { AboutScreen } from './ui/screens/About'
+import { JamScreen } from './ui/screens/Jam'
 
 function Router() {
   const route = useRoute()
@@ -28,6 +29,7 @@ function Router() {
     case 'daily': return <DailyScreen />
     case 'free': return <FreePlayScreen mode={route.mode} />
     case 'about': return <AboutScreen />
+    case 'jam': return <JamScreen />
   }
 }
 

@@ -7,6 +7,7 @@ Built as a gift. No accounts, no servers, no tracking. Open the link and play.
 ## Play
 
 - **The Tour**: 8 eras, 25 concerts, 73 puzzles. Each concert is a short set of puzzles; finishing one unlocks the next venue, a story page, and a piece of memorabilia.
+- **Jam Session**: a Words With Friends-style board game against a computer bandmate at three difficulty levels. Any word tied to Fleetwood Mac (song and album words, the band's names, the places where the music was made) scores double and shows a short fact. Names count even when they are not dictionary words.
 - **Daily Encore**: one five-letter word a day, the same for everyone, no streaks.
 - **Free Play**: any mode, any time, without affecting the tour.
 - **Scrapbook**: stories, memorabilia, band profiles, albums, achievements.
@@ -46,8 +47,8 @@ Edit `src/data/dedication.ts` to change the name and message on the title screen
 ## Project layout
 
 ```
-public/words/         word lists (ENABLE, public domain; a frequency-ranked "common" subset for hints)
-src/engine/           pure game logic, no React: scoring, validation, ladders, tile stream, RNG
+public/words/         word lists (ENABLE 2–8 letters, public domain; a frequency-ranked "common" subset for hints)
+src/engine/           pure game logic, no React: scoring, validation, ladders, tile stream, board game and opponent, RNG
 src/data/             campaign, puzzles, history (with sources), collectibles, achievements
 src/state/            versioned save system, store, hash router
 src/ui/               screens, puzzle modes, components
@@ -60,7 +61,7 @@ docs/research/        verified history notes with source URLs
 
 This is an unofficial, non-commercial fan project. It is not affiliated with or endorsed by Fleetwood Mac, Stevie Nicks, or their labels. It contains no recordings, lyrics, photographs, or album art. Illustrations are original line drawings; all audio is synthesized in the browser, and the era music is original and does not reproduce any Fleetwood Mac melody. Historical facts are sourced in `docs/research/history-notes.md` and on every scrapbook page. The player's road-crew role is a game device, and venues labelled as game stages are not documented performances.
 
-Word validation uses the public-domain ENABLE word list. Letter values follow the classic Scrabble scheme. Scrabble, Words With Friends, and Wordle are trademarks of their respective owners.
+Word validation uses the public-domain ENABLE word list. Letter values follow the classic Scrabble scheme in the Songwriter and a Words With Friends-style scheme on the Jam Session board; neither scheme is protected by copyright. Scrabble, Words With Friends, and Wordle are trademarks of their respective owners.
 
 Fonts: Playfair Display and Lora (SIL Open Font License), self-hosted.
 

@@ -59,7 +59,7 @@ export function loadDictionary(base: string): Promise<Dictionary> {
         if (!r.ok) throw new Error(`Dictionary failed to load (${r.status})`)
         return r.text()
       })
-    cached = Promise.all([get('enable-3-8.txt'), get('common.txt').catch(() => '')])
+    cached = Promise.all([get('enable-2-8.txt'), get('common.txt').catch(() => '')])
       .then(([all, common]) => Dictionary.fromText(all, common))
       .catch((err) => {
         cached = null
